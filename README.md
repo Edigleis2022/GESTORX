@@ -1,6 +1,8 @@
+🚧 Status: Em desenvolvimento (Projeto acadêmico)
+
 🚀 GetorX API
 
-API REST desenvolvida com Spring Boot como parte de um projeto acadêmico, com foco na aplicação prática de arquitetura em camadas e boas práticas no desenvolvimento backend.
+API REST desenvolvida com Spring Boot como parte de um projeto acadêmico em desenvolvimento, com foco na aplicação prática de arquitetura em camadas e boas práticas no desenvolvimento backend.
 
 📚 Contexto Acadêmico
 
