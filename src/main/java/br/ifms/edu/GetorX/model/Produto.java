@@ -24,12 +24,6 @@ public class Produto {
     private String marca;
     private Double valor;
 
-    @OneToMany(mappedBy = "produto")
-    private List<Demanda> demandas;
-
-    @OneToMany(mappedBy = "produto")
-    private List<ProdutoReposicao> reposicoes;
-
     @ManyToMany(mappedBy = "produtos")
     private List<Fornecedor> fornecedores;
 
