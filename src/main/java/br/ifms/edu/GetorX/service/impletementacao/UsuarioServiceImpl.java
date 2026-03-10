@@ -1,6 +1,6 @@
+package br.ifms.edu.GetorX.service.impletementacao;
 
 import java.util.List;
-
 import br.ifms.edu.GetorX.model.Usuario;
 import br.ifms.edu.GetorX.repository.UsuarioRepository;
 import br.ifms.edu.GetorX.service.UsuarioService;
