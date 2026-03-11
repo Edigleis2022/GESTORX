@@ -27,15 +27,4 @@ public class Produto {
     @ManyToMany(mappedBy = "produtos")
     private List<Fornecedor> fornecedores;
 
-    public Long getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public String getNome() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Double getValor() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
