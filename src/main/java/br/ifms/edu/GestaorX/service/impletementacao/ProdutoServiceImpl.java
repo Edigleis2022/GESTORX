@@ -1,12 +1,15 @@
-package br.ifms.edu.GetorX.service.impletementacao;
+package br.ifms.edu.GestaorX.service.impletementacao;
 
 import java.util.List;
 
-import br.ifms.edu.GetorX.dto.ProdutoDTO;
-import br.ifms.edu.GetorX.model.Produto;
-import br.ifms.edu.GetorX.repository.ProdutoRepository;
-import br.ifms.edu.GetorX.service.ProdutoService;
+import org.springframework.stereotype.Service;
 
+import br.ifms.edu.GestaorX.dto.ProdutoDTO;
+import br.ifms.edu.GestaorX.model.Produto;
+import br.ifms.edu.GestaorX.repository.ProdutoRepository;
+import br.ifms.edu.GestaorX.service.ProdutoService;
+
+@Service
 public class ProdutoServiceImpl implements ProdutoService {
 
     private final ProdutoRepository repository;

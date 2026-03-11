@@ -1,4 +1,4 @@
-package br.ifms.edu.GetorX.exception;
+package br.ifms.edu.GestaorX.exception;
 
 
 /**

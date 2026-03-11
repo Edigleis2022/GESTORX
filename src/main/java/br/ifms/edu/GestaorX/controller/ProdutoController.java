@@ -1,18 +1,19 @@
-package br.ifms.edu.GetorX.controller;
+package br.ifms.edu.GestaorX.controller;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.ifms.edu.GetorX.dto.ProdutoDTO;
-import br.ifms.edu.GetorX.model.Produto;
-import br.ifms.edu.GetorX.service.ProdutoService;
+import br.ifms.edu.GestaorX.dto.ProdutoDTO;
+import br.ifms.edu.GestaorX.model.Produto;
+import br.ifms.edu.GestaorX.service.ProdutoService;
 
-
+@Service
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {

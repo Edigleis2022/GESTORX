@@ -1,10 +1,10 @@
-package br.ifms.edu.GetorX;
+package br.ifms.edu.GestaorX;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GetorXApplicationTests {
+class GestaorXApplicationTests {
 
 	@Test
 	void contextLoads() {

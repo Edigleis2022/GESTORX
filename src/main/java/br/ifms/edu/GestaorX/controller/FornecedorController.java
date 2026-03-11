@@ -1,15 +1,18 @@
-package br.ifms.edu.GetorX.controller;
+package br.ifms.edu.GestaorX.controller;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import br.ifms.edu.GetorX.dto.FornecedorDTO;
-import br.ifms.edu.GetorX.model.Fornecedor;
-import br.ifms.edu.GetorX.service.FornecedorService;
+import br.ifms.edu.GestaorX.dto.FornecedorDTO;
+import br.ifms.edu.GestaorX.model.Fornecedor;
+import br.ifms.edu.GestaorX.service.FornecedorService;
 
+@RestController
 public class FornecedorController {
 
     private final FornecedorService service;

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.ifms.edu</groupId>
-	<artifactId>GetorX</artifactId>
+	<artifactId>GestaorX</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>GetorX</name>
+	<name>GestaorX</name>
 	<description>Sistema de Controle de Estoques Pequenas Empresas</description>
 	<url/>
 	<licenses>
@@ -35,6 +35,12 @@
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-web</artifactId>
  </dependency>
+
+ <dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+</dependency>
 
  <dependency>
   <groupId>org.springframework.boot</groupId>

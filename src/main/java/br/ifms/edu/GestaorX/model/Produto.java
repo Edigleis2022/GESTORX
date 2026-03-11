@@ -1,4 +1,4 @@
-package br.ifms.edu.GetorX.model;
+package br.ifms.edu.GestaorX.model;
 
 import java.util.List;
 

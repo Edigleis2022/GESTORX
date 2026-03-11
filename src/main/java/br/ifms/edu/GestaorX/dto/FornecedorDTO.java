@@ -1,6 +1,6 @@
-package br.ifms.edu.GetorX.dto;
+package br.ifms.edu.GestaorX.dto;
 
-import br.ifms.edu.GetorX.model.Fornecedor;
+import br.ifms.edu.GestaorX.model.Fornecedor;
 
 public class FornecedorDTO {
 

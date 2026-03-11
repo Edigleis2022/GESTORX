@@ -1,12 +1,15 @@
-package br.ifms.edu.GetorX.service.impletementacao;
+package br.ifms.edu.GestaorX.service.impletementacao;
 
 import java.util.List;
 
-import br.ifms.edu.GetorX.dto.FornecedorDTO;
-import br.ifms.edu.GetorX.model.Fornecedor;
-import br.ifms.edu.GetorX.repository.FornecedorRepository;
-import br.ifms.edu.GetorX.service.FornecedorService;
+import org.springframework.stereotype.Service;
 
+import br.ifms.edu.GestaorX.dto.FornecedorDTO;
+import br.ifms.edu.GestaorX.model.Fornecedor;
+import br.ifms.edu.GestaorX.repository.FornecedorRepository;
+import br.ifms.edu.GestaorX.service.FornecedorService;
+
+@Service
 public class FornecedorServiceImpl implements FornecedorService {
 
     private final FornecedorRepository repository;

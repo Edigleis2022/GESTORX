@@ -1,10 +1,14 @@
-package br.ifms.edu.GetorX.service.impletementacao;
+package br.ifms.edu.GestaorX.service.impletementacao;
 
 import java.util.List;
-import br.ifms.edu.GetorX.model.Usuario;
-import br.ifms.edu.GetorX.repository.UsuarioRepository;
-import br.ifms.edu.GetorX.service.UsuarioService;
 
+import org.springframework.stereotype.Service;
+
+import br.ifms.edu.GestaorX.model.Usuario;
+import br.ifms.edu.GestaorX.repository.UsuarioRepository;
+import br.ifms.edu.GestaorX.service.UsuarioService;
+
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository repository;
