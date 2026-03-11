@@ -2,7 +2,7 @@ package br.ifms.edu.GestaorX.controller;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
