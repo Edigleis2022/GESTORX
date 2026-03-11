@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ifms.edu.GestaorX.dto.FornecedorDTO;
@@ -13,6 +14,7 @@ import br.ifms.edu.GestaorX.model.Fornecedor;
 import br.ifms.edu.GestaorX.service.FornecedorService;
 
 @RestController
+@RequestMapping("/fornecedores")
 public class FornecedorController {
 
     private final FornecedorService service;

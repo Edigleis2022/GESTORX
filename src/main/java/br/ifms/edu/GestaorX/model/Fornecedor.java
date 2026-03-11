@@ -1,7 +1,5 @@
 package br.ifms.edu.GestaorX.model;
 
-
-
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -12,9 +10,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Fornecedor {
 
     @Id
@@ -25,23 +25,15 @@ public class Fornecedor {
 
     @ManyToMany
     @JoinTable(
-            name = "fornecedor_produto",
-            joinColumns = @JoinColumn(name = "fornecedor_id"),
-            inverseJoinColumns = @JoinColumn(name = "produto_id")
+        name = "fornecedor_produto",
+        joinColumns = @JoinColumn(name = "fornecedor_id"),
+        inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
     private List<Produto> produtos;
 
-    public Fornecedor(Long id, String nome, List produtos) {
+    public Fornecedor(Long id, String nome, List<Produto> produtos) {
         this.id = id;
         this.nome = nome;
         this.produtos = produtos;
-    }
-
-    public Long getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public String getNome() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
