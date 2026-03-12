@@ -9,11 +9,11 @@ public class ProdutoDTO {
 
     private Long id;
     private String nome;
-    private Double valor;
+    private Double preco;
 
     public ProdutoDTO(Produto produto) {
         this.id = produto.getId();
         this.nome = produto.getNome();
-        this.valor = produto.getValor();
+        this.preco = produto.getPreco();
     }
 }
