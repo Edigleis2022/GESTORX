@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.ifms.edu.GestaorX.model.MovimentoEstoque;
 import br.ifms.edu.GestaorX.model.Venda;
 import br.ifms.edu.GestaorX.service.MovimentoEstoqueService;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,12 +26,12 @@ public class MovimentoEstoqueController {
     }
 
     @PostMapping
-    public Venda salvar(@RequestBody Venda venda) {
-        return service.salvar(venda);
+    public MovimentoEstoque salvar(@RequestBody MovimentoEstoque movimentoEstoque) {
+        return service.salvar(movimentoEstoque);
     }
 
     @GetMapping
-    public List<Venda> listar(){
+    public List<MovimentoEstoque> listar(){
         return service.listar();
     }
     
