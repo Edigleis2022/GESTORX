@@ -2,7 +2,7 @@ package br.ifms.edu.GestaorX.controller;
 
 import java.util.List;
 
-
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +13,7 @@ import br.ifms.edu.GestaorX.dto.FornecedorDTO;
 import br.ifms.edu.GestaorX.model.Fornecedor;
 import br.ifms.edu.GestaorX.service.FornecedorService;
 
+@Service
 @RestController
 @RequestMapping("/fornecedores")
 public class FornecedorController {

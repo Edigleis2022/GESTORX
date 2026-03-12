@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.ifms.edu.GestaorX.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     public List<Usuario> findAll();
 

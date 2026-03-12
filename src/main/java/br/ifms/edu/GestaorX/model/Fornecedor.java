@@ -22,7 +22,11 @@ public class Fornecedor {
     private Long id;
 
     private String nome;
+    private Integer telefone;
+    private String email;
+    private String endereco;
 
+    //Cria uma Tabela Intermediária 
     @ManyToMany
     @JoinTable(
         name = "fornecedor_produto",
@@ -30,10 +34,4 @@ public class Fornecedor {
         inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
     private List<Produto> produtos;
-
-    public Fornecedor(Long id, String nome, List<Produto> produtos) {
-        this.id = id;
-        this.nome = nome;
-        this.produtos = produtos;
-    }
 }

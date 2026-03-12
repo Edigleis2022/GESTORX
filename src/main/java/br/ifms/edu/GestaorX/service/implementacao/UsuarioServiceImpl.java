@@ -1,4 +1,4 @@
-package br.ifms.edu.GestaorX.service.impletementacao;
+package br.ifms.edu.GestaorX.service.implementacao;
 
 import java.util.List;
 
