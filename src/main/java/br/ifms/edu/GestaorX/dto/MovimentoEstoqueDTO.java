@@ -1,7 +1,10 @@
 package br.ifms.edu.GestaorX.dto;
 
 
-public class MovimetoEstoque {
+import br.ifms.edu.GestaorX.model.MovimentoEstoque;
+import lombok.Data;
+@Data
+public class MovimentoEstoqueDTO {
 
     private Long id;
     private String tipomovimentacao;
