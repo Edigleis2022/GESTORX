@@ -23,7 +23,7 @@ public class FornecedorServiceImpl implements FornecedorService {
     }
 
     public List<FornecedorDTO> listar() {
-        return repository.findAll().stream().map(FornecedorDTO::new).toList();
+        return repository.findAll().stream().map(FornecedorDTO).toList();
     }
 
 }
