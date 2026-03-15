@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "tb_product")
 public class Produto {
 
     @Id

@@ -9,12 +9,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@Data 
 @NoArgsConstructor
+@Table(name = "tb_supplier")
 public class Fornecedor {
 
     @Id
