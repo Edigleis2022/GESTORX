@@ -2,7 +2,10 @@ package br.ifms.edu.GestaorX.model;
 
 import java.util.List;
 
+import br.ifms.edu.GestaorX.enums.CategoriaProduto;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,11 +26,13 @@ public class Produto {
     private Long id;
 
     private String nome;
-    private String categoria;
     private Double preco;
     private Integer quantidade;
 
     @ManyToMany(mappedBy = "produtos")
     private List<Fornecedor> fornecedores;
+
+    @Enumerated(EnumType.STRING)
+    private CategoriaProduto categoria;
 
 }
