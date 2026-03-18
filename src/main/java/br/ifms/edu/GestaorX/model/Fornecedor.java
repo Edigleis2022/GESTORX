@@ -2,7 +2,10 @@ package br.ifms.edu.GestaorX.model;
 
 import java.util.List;
 
+import br.ifms.edu.GestaorX.enums.StatusFornecedor;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,4 +39,7 @@ public class Fornecedor {
         inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
     private List<Produto> produtos;
+
+    @Enumerated(EnumType.STRING)
+    private StatusFornecedor status;
 }

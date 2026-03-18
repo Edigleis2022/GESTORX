@@ -2,7 +2,10 @@ package br.ifms.edu.GestaorX.model;
 
 import java.time.LocalDate;
 
+import br.ifms.edu.GestaorX.enums.TipoPagamento;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,4 +31,7 @@ public class Venda {
 
     @ManyToOne
     private Usuario usuario;
+
+    @Enumerated(EnumType.STRING)
+    private TipoPagamento tipoPagamento;
 }

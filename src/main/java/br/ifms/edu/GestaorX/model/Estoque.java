@@ -1,14 +1,15 @@
 package br.ifms.edu.GestaorX.model;
 
 import java.time.LocalDate;
-
+import br.ifms.edu.GestaorX.enums.StatusEstoque;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,4 +30,7 @@ public class Estoque {
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
+
+    @Enumerated(EnumType.STRING)
+    private StatusEstoque status;
 }
