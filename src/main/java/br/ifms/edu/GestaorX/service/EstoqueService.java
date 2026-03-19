@@ -12,4 +12,6 @@ public interface EstoqueService {
      Estoque salvar(Estoque estoque);
 
     List<Estoque> listar();
+
+    
 }

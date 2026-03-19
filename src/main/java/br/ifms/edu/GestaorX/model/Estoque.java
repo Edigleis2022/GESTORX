@@ -23,7 +23,7 @@ public class Estoque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private int quantidade;
     private Double valor;
     private LocalDate dataReposicao;
 
@@ -33,4 +33,14 @@ public class Estoque {
 
     @Enumerated(EnumType.STRING)
     private StatusEstoque status;
+
+    public void atualizarStatus() {
+        if (quantidade == 0) {
+            status = StatusEstoque.ESGOTADO;
+        } else if (quantidade < 5) {
+            status = StatusEstoque.BAIXO;
+        } else {
+            status = StatusEstoque.DISPONIVEL;
+        }
+    }
 }

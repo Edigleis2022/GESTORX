@@ -18,6 +18,7 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     public Estoque salvar(Estoque estoque) {
+        estoque.atualizarStatus();
         return repository.save(estoque);
     }
 
