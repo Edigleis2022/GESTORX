@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.ifms.edu</groupId>
-	<artifactId>GestaorX</artifactId>
+	<artifactId>GestorX</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>GestaorX</name>
 	<description>Sistema de Controle de Estoques Pequenas Empresas</description>
