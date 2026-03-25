@@ -13,7 +13,6 @@ import br.ifms.edu.GestorX.dto.ProdutoDTO;
 import br.ifms.edu.GestorX.model.Produto;
 import br.ifms.edu.GestorX.service.ProdutoService;
 
-@Service
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
@@ -27,6 +26,13 @@ public class ProdutoController {
     @PostMapping
     public Produto salvar(@RequestBody Produto produto) {
         return service.salvar(produto);
+    }
+
+    @PostMapping("/lote")
+    public List<Produto> salvarVarios(@RequestBody List<Produto> produtos) {
+        return produtos.stream()
+                .map(service::salvar)
+                .toList();
     }
 
     @GetMapping
