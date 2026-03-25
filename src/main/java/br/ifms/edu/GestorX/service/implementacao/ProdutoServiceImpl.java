@@ -22,14 +22,10 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     public List<ProdutoDTO> listar() {
-        return repository.findAll().stream()
-        .map((Produto entity) -> {
-            ProdutoDTO dto = new ProdutoDTO();
-            dto.setNome(entity.getNome());
-            dto.setPreco(entity.getPreco());
-            return dto;
-        })
-        .collect(Collectors.toList());
+        return repository.findAll()
+        .stream()
+        .map(ProdutoDTO::new)
+        .toList();
     }
 
 } 
