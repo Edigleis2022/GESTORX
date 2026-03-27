@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import br.ifms.edu.GestorX.model.Estoque;
 import br.ifms.edu.GestorX.service.EstoqueService;
 
-@Service
+
 @RestController
 @RequestMapping("/estoques")
 public class EstoqueController {

@@ -13,7 +13,6 @@ import br.ifms.edu.GestorX.dto.FornecedorDTO;
 import br.ifms.edu.GestorX.model.Fornecedor;
 import br.ifms.edu.GestorX.service.FornecedorService;
 
-@Service
 @RestController
 @RequestMapping("/fornecedores")
 public class FornecedorController {
