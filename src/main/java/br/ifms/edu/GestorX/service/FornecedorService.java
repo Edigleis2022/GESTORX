@@ -17,6 +17,7 @@ public interface FornecedorService {
 
     //Deletar
     void deletar(Long id);
+        
+    Fornecedor atualizar(Long id, Fornecedor fornecedor);
     
-
 }

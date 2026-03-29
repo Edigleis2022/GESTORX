@@ -52,4 +52,21 @@ public class FornecedorServiceImpl implements FornecedorService {
         repository.delete(fornecedor);
     }
 
+    @Override
+    public Fornecedor atualizar(Long id, Fornecedor fornecedor) {
+
+        // Verifica se o fornecedor existe
+        Fornecedor existente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
+
+        // Atualiza os campos do fornecedor existente
+        existente.setNome(fornecedor.getNome());
+        existente.setEmail(fornecedor.getEmail());
+        existente.setTelefone(fornecedor.getTelefone());
+        existente.setEndereco(fornecedor.getEndereco());
+        existente.setStatus(fornecedor.getStatus());
+
+        // Salva as alterações
+        return repository.save(existente);
+    }
 }
