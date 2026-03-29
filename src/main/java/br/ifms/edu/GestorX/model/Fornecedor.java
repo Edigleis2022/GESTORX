@@ -3,6 +3,7 @@ package br.ifms.edu.GestorX.model;
 import java.util.List;
 
 import br.ifms.edu.GestorX.enums.StatusFornecedor;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,14 +33,9 @@ public class Fornecedor {
     private String email;
     private String endereco;
 
-    //Cria uma Tabela Intermediária 
-    @ManyToMany
-    @JoinTable(
-        name = "fornecedor_produto",
-        joinColumns = @JoinColumn(name = "fornecedor_id"),
-        inverseJoinColumns = @JoinColumn(name = "produto_id")
-    )
-    private List<Produto> produtos;
+    // NO RELACIONAMENTO COM A ENTIDADE INTERMEDIÁRIAEE
+    @OneToMany(mappedBy = "fornecedor")
+    private List<FornecedorProduto> fornecedorProdutos;
 
     @Enumerated(EnumType.STRING)
     private StatusFornecedor status;

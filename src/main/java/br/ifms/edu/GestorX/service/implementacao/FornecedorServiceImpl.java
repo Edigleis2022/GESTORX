@@ -1,10 +1,12 @@
 package br.ifms.edu.GestorX.service.implementacao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import br.ifms.edu.GestorX.dto.FornecedorDTO;
 import br.ifms.edu.GestorX.model.Fornecedor;
+import br.ifms.edu.GestorX.model.FornecedorProduto;
 import br.ifms.edu.GestorX.repository.FornecedorRepository;
 import br.ifms.edu.GestorX.service.FornecedorService;
 
@@ -69,4 +71,26 @@ public class FornecedorServiceImpl implements FornecedorService {
         // Salva as alterações
         return repository.save(existente);
     }
+
+    public void encerrarVinculo(Long fornecedorId, Long produtoId) {
+
+        // . Buscar forneced
+        Fornecedor fornecedor = repository.findById(fornecedorId)
+            .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
+
+            // 2. Percorrer os vínculos
+            for (FornecedorProduto fp : fornecedor.getFornecedorProdutos()) {
+                if (fp.getProduto().getId().equals(produtoId)) {
+                    // 3. Encerrar o vínculo
+                    fp.setDataFim(LocalDate.now());
+                    break;
+                }
+            }
+            // 5 .Salvar fornecedor (atualiza tudo)
+            repository.save(fornecedor);
+    }
+
+    
+
+
 }
