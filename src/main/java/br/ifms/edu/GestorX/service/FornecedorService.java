@@ -8,6 +8,15 @@ import br.ifms.edu.GestorX.model.Fornecedor;
 @Service
 public interface FornecedorService {
 
+    //Salva Fornecedor
     Fornecedor salvar(Fornecedor fornecedor);
-    List<FornecedorDTO> listar();
+    List<FornecedorDTO> listar(); //Lista usando DTO
+
+    // Buscar por ID
+    Fornecedor buscarPorId(Long id);
+
+    //Deletar
+    void deletar(Long id);
+    
+
 }
