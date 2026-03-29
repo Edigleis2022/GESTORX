@@ -19,5 +19,7 @@ public interface FornecedorService {
     void deletar(Long id);
         
     Fornecedor atualizar(Long id, Fornecedor fornecedor);
-    
+
+    void encerrarVinculo(Long fornecedorId, Long produtoId);
+
 }

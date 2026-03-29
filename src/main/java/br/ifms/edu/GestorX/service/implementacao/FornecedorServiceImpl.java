@@ -89,8 +89,4 @@ public class FornecedorServiceImpl implements FornecedorService {
             // 5 .Salvar fornecedor (atualiza tudo)
             repository.save(fornecedor);
     }
-
-    
-
-
 }
