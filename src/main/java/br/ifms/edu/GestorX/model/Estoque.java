@@ -23,7 +23,7 @@ public class Estoque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int quantidade;
+    private Integer quantidade;
     private Double valor;
     private LocalDate dataReposicao;
 

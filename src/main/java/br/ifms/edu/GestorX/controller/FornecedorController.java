@@ -41,4 +41,9 @@ public class FornecedorController {
         @PathVariable Long produtoId) {
             service.encerrarVinculo(forncecedorId, produtoId);
         }
+
+    @GetMapping("/{id}")
+    public FornecedorDTO buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
+    }
 }

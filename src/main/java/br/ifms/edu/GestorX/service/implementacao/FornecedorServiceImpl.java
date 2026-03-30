@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import br.ifms.edu.GestorX.dto.FornecedorDTO;
+import br.ifms.edu.GestorX.enums.StatusFornecedor;
 import br.ifms.edu.GestorX.model.Fornecedor;
 import br.ifms.edu.GestorX.model.FornecedorProduto;
 import br.ifms.edu.GestorX.repository.FornecedorRepository;
@@ -36,12 +37,15 @@ public class FornecedorServiceImpl implements FornecedorService {
     }
 
     @Override
-    public Fornecedor buscarPorId(Long id) {
+    public FornecedorDTO buscarPorId(Long id) {
 
         // Busca forncecedor pelo ID
-        return repository.findById(id)
+        Fornecedor fornecedor = repository.findById(id)
                 // Se não encontrar, lança erro
                 .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
+        
+                // Converte para DTO
+                return new FornecedorDTO(fornecedor);
     }
 
     @Override
@@ -50,12 +54,13 @@ public class FornecedorServiceImpl implements FornecedorService {
         Fornecedor fornecedor = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
 
-        // Deleta o fornecedor
-        repository.delete(fornecedor);
+        // Em vez de deletar, inativa
+        fornecedor.setStatus(StatusFornecedor.INATIVO);
+        repository.save(fornecedor);
     }
 
     @Override
-    public Fornecedor atualizar(Long id, Fornecedor fornecedor) {
+    public FornecedorDTO atualizar(Long id, Fornecedor fornecedor) {
 
         // Verifica se o fornecedor existe
         Fornecedor existente = repository.findById(id)
@@ -68,10 +73,13 @@ public class FornecedorServiceImpl implements FornecedorService {
         existente.setEndereco(fornecedor.getEndereco());
         existente.setStatus(fornecedor.getStatus());
 
+        Fornecedor atualizado = repository.save(existente);
+
         // Salva as alterações
-        return repository.save(existente);
+        return new FornecedorDTO(atualizado);
     }
 
+    @Override
     public void encerrarVinculo(Long fornecedorId, Long produtoId) {
 
         // . Buscar forneced

@@ -10,16 +10,20 @@ public interface FornecedorService {
 
     //Salva Fornecedor
     Fornecedor salvar(Fornecedor fornecedor);
+
+    // Listar
     List<FornecedorDTO> listar(); //Lista usando DTO
 
     // Buscar por ID
-    Fornecedor buscarPorId(Long id);
+    FornecedorDTO buscarPorId(Long id);
 
-    //Deletar
+    //Deletar (inativar)
     void deletar(Long id);
-        
-    Fornecedor atualizar(Long id, Fornecedor fornecedor);
+    
+    // Atualizar (retorna DTO))
+    FornecedorDTO atualizar(Long id, Fornecedor fornecedor);
 
+    // Encerrar vínculo 
     void encerrarVinculo(Long fornecedorId, Long produtoId);
 
 }

@@ -11,7 +11,11 @@ public class FornecedorDTO {
     private Long id;
     private String nome;
     private String email;
-    
-    //Construtor que converte Entity ->  
-    
+
+    // Construtor para converter Entity → DTO
+    public FornecedorDTO(Fornecedor fornecedor) {
+        this.id = fornecedor.getId();
+        this.nome = fornecedor.getNome();
+        this.email = fornecedor.getEmail();
+    }
 }
