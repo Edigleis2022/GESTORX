@@ -60,4 +60,10 @@ public class FornecedorController {
         // e retorna o fornecedor atualizado como DTO
         return service.atualizar(id, fornecedor);
     }
+
+    @PutMapping("/{id}/deletar")
+    public void deletar(@PathVariable Long id) {
+        // "Deleta" um fornecedor (na verdade, inativa)
+        service.deletar(id);
+    }
 }
