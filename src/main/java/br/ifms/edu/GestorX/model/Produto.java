@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.model;
 
 import java.util.List;
-
 import br.ifms.edu.GestorX.enums.CategoriaProduto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,7 +8,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,8 +28,8 @@ public class Produto {
     private Double preco;
     private Integer quantidade;
 
-    @ManyToMany(mappedBy = "produtos")
-    private List<Fornecedor> fornecedores;
+    @OneToMany(mappedBy = "produtos")
+    private List<FornecedorProduto> fornecedoresProdutos;
 
     @Enumerated(EnumType.STRING)
     private CategoriaProduto categoria;
