@@ -25,14 +25,9 @@ public class FornecedorServiceImpl implements FornecedorService {
     }
 
     public List<FornecedorDTO> listar() {
-        return repository.findAll().stream()
-                .map((Fornecedor entity) -> {
-                    FornecedorDTO dto = new FornecedorDTO();
-                    dto.setId(entity.getId());
-                    dto.setNome(entity.getNome());
-                    dto.setEmail(entity.getEmail());
-                    return dto;
-                })
+        return repository.findAll()
+                .stream()
+                .map(FornecedorDTO:: new)
                 .collect(Collectors.toList());
     }
 
@@ -56,6 +51,7 @@ public class FornecedorServiceImpl implements FornecedorService {
 
         // Em vez de deletar, inativa
         fornecedor.setStatus(StatusFornecedor.INATIVO);
+
         repository.save(fornecedor);
     }
 

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.ifms.edu.GestorX.dto.FornecedorDTO;
 import br.ifms.edu.GestorX.model.Fornecedor;
 import br.ifms.edu.GestorX.service.FornecedorService;
@@ -25,10 +24,11 @@ public class FornecedorController {
     }
 
     @PostMapping
-    public Fornecedor salvar(@RequestBody Fornecedor fornecedor) {
+    public FornecedorDTO salvar(@RequestBody Fornecedor fornecedor) {
+        
         // Recebe um fornecedor no corpo da requisição (JSON)
         // e salva no banco através do service
-        return service.salvar(fornecedor);
+        return new FornecedorDTO( service.salvar(fornecedor));
     }
 
     @GetMapping
@@ -39,12 +39,12 @@ public class FornecedorController {
 
     @PutMapping("/{fornecedorId}/produtos/{produtoId}/encerrar")
     public void encerrarVinculo(
-        @PathVariable Long forncecedorId,
+        @PathVariable Long fornecedorId,
         @PathVariable Long produtoId) {
         
         // Remove (ou encerra) o vínculo entre fornecedor e produto
         // baseado nos IDs informados na URL
-        service.encerrarVinculo(forncecedorId, produtoId);
+        service.encerrarVinculo(fornecedorId, produtoId);
     }
 
     @GetMapping("/{id}")
@@ -52,5 +52,12 @@ public class FornecedorController {
         // Busca um fornecedor específico pelo ID
         // e retorna como DTO
         return service.buscarPorId(id);
+    }
+
+    @PutMapping("/{id}")
+    public FornecedorDTO atualizar(@PathVariable Long id, @RequestBody Fornecedor fornecedor) {
+        // Atualiza um fornecedor existente com os dados fornecidos
+        // e retorna o fornecedor atualizado como DTO
+        return service.atualizar(id, fornecedor);
     }
 }
