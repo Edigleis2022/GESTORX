@@ -3,9 +3,6 @@ package br.ifms.edu.GestorX.service.implementacao;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
-
-import javax.management.RuntimeErrorException;
-
 import br.ifms.edu.GestorX.dto.ProdutoDTO;
 import br.ifms.edu.GestorX.model.Produto;
 import br.ifms.edu.GestorX.repository.ProdutoRepository;
@@ -20,46 +17,63 @@ public class ProdutoServiceImpl implements ProdutoService {
         this.repository = repository;
     }
 
-    public Produto salvar(Produto produto) {
-        return repository.save(produto);
-    }
-
-    public List<ProdutoDTO> listar() {
-        return repository.findAll()
-        .stream()
-        .map(ProdutoDTO::new)
-        .toList();
-    }
-
-    @Override
-    public Produto buscarPorId(Long id) {
-        //Procura o produto no banco pelo ID
+    // 🔹 Método reutilizável (evita repetição)
+    private Produto buscarOuFalhar(Long id) {
         return repository.findById(id)
-            // Se não encontrar, lança um erro
-            .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+            .orElseThrow(() -> new RuntimeException("Produto com ID " + id + " não encontrado"));
     }
 
+    // 🔹 Salvar produto
     @Override
-    public Produto atualizar(Long id, Produto produtoAtualizado) {
+    public ProdutoDTO salvar(Produto produto) {
 
-        //1. Buscar o produto que já existe no banco
-        Produto produto = repository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Produuto não encontrado"));
+        Produto salvo = repository.save(produto);
 
-        //2. Atualizar os dados do produto encontrado com os novos valores
-        produto.setNome(produtoAtualizado.getNome()); 
-        produto.setPreco(produtoAtualizado.getPreco()); 
+        return new ProdutoDTO(salvo);
+    }
+
+    // 🔹 Listar todos
+    @Override
+    public List<ProdutoDTO> listar() {
+
+        return repository.findAll()
+                .stream()
+                .map(ProdutoDTO::new)
+                .toList();
+    }
+
+    // 🔹 Buscar por ID
+    @Override
+    public ProdutoDTO buscarPorId(Long id) {
+
+        Produto produto = buscarOuFalhar(id);
+
+        return new ProdutoDTO(produto);
+    }
+
+    // 🔹 Atualizar produto
+    @Override
+    public ProdutoDTO atualizar(Long id, Produto produtoAtualizado) {
+
+        Produto produto = buscarOuFalhar(id);
+
+        produto.setNome(produtoAtualizado.getNome());
+        produto.setPreco(produtoAtualizado.getPreco());
         produto.setQuantidade(produtoAtualizado.getQuantidade());
         produto.setCategoria(produtoAtualizado.getCategoria());
 
-        //3. Salvar o produto atualizado no banco
-        return repository.save(produto);
+        Produto atualizado = repository.save(produto);
+
+        return new ProdutoDTO(atualizado);
     }
 
+    // 🔹 Deletar produto
     @Override
-    public void deletar(Long id){
+    public void deletar(Long id) {
 
-        repository.deleteById(id);
+        Produto produto = buscarOuFalhar(id);
+
+        repository.delete(produto);
     }
-} 
+}
  

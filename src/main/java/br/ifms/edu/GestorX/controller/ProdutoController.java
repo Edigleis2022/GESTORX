@@ -21,26 +21,41 @@ public class ProdutoController {
         this.service = service;
     }
 
+    // 🔹 Criar produto
     @PostMapping
-    public Produto salvar(@RequestBody Produto produto) {
+    public ProdutoDTO salvar(@RequestBody Produto produto) {
         return service.salvar(produto);
     }
 
-    //Adaptado para Receber uma lista
+    // 🔹 Criar vários produtos (lote)
     @PostMapping("/lote")
-    public List<Produto> salvarVarios(@RequestBody List<Produto> produtos) {
+    public List<ProdutoDTO> salvarVarios(@RequestBody List<Produto> produtos) {
         return produtos.stream()
-                .map(service::salvar)
+                .map(service::salvar) // retorna DTO
                 .toList();
     }
 
+    // 🔹 Listar todos
     @GetMapping
     public List<ProdutoDTO> listar() {
         return service.listar();
     }
 
+    // 🔹 Buscar por ID
     @GetMapping("/{id}")
-    public Produto buscarPorId(@PathVariable Long id) {
+    public ProdutoDTO buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
+    }
+
+    // 🔹 Atualizar produto
+    @PutMapping("/{id}")
+    public ProdutoDTO atualizar(@PathVariable Long id, @RequestBody Produto produto) {
+        return service.atualizar(id, produto);
+    }
+
+    // 🔹 Deletar produto
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
     }
 }

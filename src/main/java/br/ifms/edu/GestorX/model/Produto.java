@@ -28,7 +28,7 @@ public class Produto {
     private Double preco;
     private Integer quantidade;
 
-    @OneToMany(mappedBy = "produtos")
+    @OneToMany(mappedBy = "produto")
     private List<FornecedorProduto> fornecedoresProdutos;
 
     @Enumerated(EnumType.STRING)

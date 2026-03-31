@@ -7,13 +7,14 @@ import br.ifms.edu.GestorX.model.Produto;
 
 @Service
 public interface ProdutoService {
-    Produto salvar(Produto produto);
+    ProdutoDTO salvar(Produto produto);
+
     List<ProdutoDTO> listar();
     
-    public Produto buscarPorId(Long id);
+    
+    ProdutoDTO buscarPorId(Long id);
 
     void deletar (Long id);
 
-    Produto atualizar(Long id, Produto produto);
-    
+    ProdutoDTO atualizar(Long id, Produto produto); 
 }
