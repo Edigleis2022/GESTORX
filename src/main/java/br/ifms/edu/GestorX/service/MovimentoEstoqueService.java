@@ -1,17 +1,16 @@
 package br.ifms.edu.GestorX.service;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
 
-import br.ifms.edu.GestorX.dto.MovimentoEstoqueDTO;
-import br.ifms.edu.GestorX.model.MovimentoEstoque;
+import br.ifms.edu.GestorX.dto.MovimentoEstoqueRequestDTO;
+import br.ifms.edu.GestorX.dto.MovimentoEstoqueResponseDTO;
 
-@Service
+// Define o contrato do serviço
 public interface MovimentoEstoqueService {
 
-    MovimentoEstoque realizarMovimento(MovimentoEstoqueDTO dto);
+    // Realiza entrada, saída ou ajuste
+    MovimentoEstoqueResponseDTO realizarMovimento(MovimentoEstoqueRequestDTO dto);
 
-    MovimentoEstoque salvar(MovimentoEstoque movimentoEstoque);
-    
-    List<MovimentoEstoque> listar();
+    // Lista todos os movimentos
+    List<MovimentoEstoqueResponseDTO> listar();
 }

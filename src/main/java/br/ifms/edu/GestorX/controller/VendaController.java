@@ -2,17 +2,15 @@ package br.ifms.edu.GestorX.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import br.ifms.edu.GestorX.model.Venda;
+import br.ifms.edu.GestorX.dto.VendaRequestDTO;
+import br.ifms.edu.GestorX.dto.VendaResponseDTO;
 import br.ifms.edu.GestorX.service.VendaService;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/venda")
+@RequestMapping("/vendas")
 public class VendaController {
 
     private final VendaService service;
@@ -21,13 +19,15 @@ public class VendaController {
         this.service = service;
     }
 
+    // 🛒 Realizar venda
     @PostMapping
-    public Venda salvar(@RequestBody Venda venda) {
-        return service.salvar(venda);
+    public VendaResponseDTO realizarVenda(@Valid @RequestBody VendaRequestDTO dto) {
+        return service.realizarVenda(dto);
     }
 
+    // 📋 Listar vendas
     @GetMapping
-    public List<Venda> listar() {
+    public List<VendaResponseDTO> listar() {
         return service.listar();
     }
 }

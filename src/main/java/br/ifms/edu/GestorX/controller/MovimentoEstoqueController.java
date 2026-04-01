@@ -2,35 +2,46 @@ package br.ifms.edu.GestorX.controller;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import br.ifms.edu.GestorX.model.MovimentoEstoque;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import br.ifms.edu.GestorX.dto.MovimentoEstoqueRequestDTO;
+import br.ifms.edu.GestorX.dto.MovimentoEstoqueResponseDTO;
+import br.ifms.edu.GestorX.enums.TipoMovimento;
 import br.ifms.edu.GestorX.service.MovimentoEstoqueService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.validation.Valid;
 
-
-@Service
 @RestController
-@RequestMapping("/movimento_estoque")
+@RequestMapping("/movimentos")
 public class MovimentoEstoqueController {
 
-    private final MovimentoEstoqueService service;
+    @Autowired
+    private MovimentoEstoqueService service;
 
-    public MovimentoEstoqueController(MovimentoEstoqueService service) {
-        this.service = service;
+    // 📥 Entrada de estoque
+    @PostMapping("/entrada")
+    public MovimentoEstoqueResponseDTO entrada(@Valid @RequestBody MovimentoEstoqueRequestDTO dto) {
+        dto.setTipo(TipoMovimento.ENTRADA);
+        return service.realizarMovimento(dto);
     }
 
-    @PostMapping
-    public MovimentoEstoque salvar(@RequestBody MovimentoEstoque movimentoEstoque) {
-        return service.salvar(movimentoEstoque);
+    // 📤 Saída de estoque
+    @PostMapping("/saida")
+    public MovimentoEstoqueResponseDTO saida(@Valid @RequestBody MovimentoEstoqueRequestDTO dto) {
+        dto.setTipo(TipoMovimento.SAIDA);
+        return service.realizarMovimento(dto);
     }
 
+    // 🔧 Ajuste de estoque
+    @PostMapping("/ajuste")
+    public MovimentoEstoqueResponseDTO ajuste(@Valid @RequestBody MovimentoEstoqueRequestDTO dto) {
+        dto.setTipo(TipoMovimento.AJUSTE);
+        return service.realizarMovimento(dto);
+    }
+
+    // 📋 Listar movimentações
     @GetMapping
-    public List<MovimentoEstoque> listar(){
+    public List<MovimentoEstoqueResponseDTO> listar() {
         return service.listar();
     }
-    
 }

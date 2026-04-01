@@ -3,20 +3,17 @@ package br.ifms.edu.GestorX.model;
 import java.time.LocalDate;
 
 import br.ifms.edu.GestorX.enums.TipoPagamento;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.Data;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@Entity
 @Table(name = "tb_sale")
 public class Venda {
 
@@ -24,14 +21,37 @@ public class Venda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 📅 Data da venda obrigatória
+    @NotNull
     private LocalDate dataVenda;
+
+    // 💰 Valor total da venda (não pode ser negativo)
+    @NotNull
+    @Min(0)
     private Double valorTotal;
-    private String formaPagamento;
+
+    // 📦 Quantidade de itens vendidos
+    @NotNull
+    @Min(1)
     private Integer quantidadeItens;
 
+    // 👤 Usuário que realizou a venda
     @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    // 💳 Tipo de pagamento (ENUM)
     @Enumerated(EnumType.STRING)
+    @NotNull
     private TipoPagamento tipoPagamento;
+
+    @PrePersist
+    public void prePersist() {
+        this.dataVenda = LocalDate.now();
+    }
+
+    // Relacionamentento com Produto
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 }
