@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.model;
 
-import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 import br.ifms.edu.GestorX.enums.TipoMovimento;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -24,14 +23,13 @@ public class MovimentoEstoque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Integer quantidade;
-    private LocalDate dataMovimentacao;
+    private LocalDateTime dataMovimentacao;
 
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
     @Enumerated(EnumType.STRING)
-    private TipoMovimento tipoMovimento;
+    private TipoMovimento tipo;
 }
