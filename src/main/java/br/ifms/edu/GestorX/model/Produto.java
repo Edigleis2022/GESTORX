@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,7 +32,7 @@ public class Produto {
     @OneToMany(mappedBy = "produto")
     private List<FornecedorProduto> fornecedoresProdutos;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private CategoriaProduto categoria;
-
 }
