@@ -2,40 +2,49 @@ package br.ifms.edu.GestorX.model;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Data;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Data
+@Table(name = "tb_fornecedor_produto")
 public class FornecedorProduto {
 
-    // Entidade Intermediária para representar o 
-    // relacionamento entre Fornecedor e Produto
-
+    // 🔑 ID da relação
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Relacionamento com forncecedor
+    // 🏭 Fornecedor (obrigatório)
     @ManyToOne
-    @JoinColumn(name = "fornecedor_id")
+    @JoinColumn(name = "fornecedor_id", nullable = false)
+    @NotNull
     private Fornecedor fornecedor;
 
-
-    // Relacionamento com produto
+    // 📦 Produto (obrigatório)
     @ManyToOne
-    @JoinColumn(name = "produto_id")
+    @JoinColumn(name = "produto_id", nullable = false)
+    @NotNull
     private Produto produto;
 
-    // Data que ccomeçou o vinculo
+    // 📅 Data de início do vínculo
+    @NotNull
     private LocalDate dataInicio;
 
-    // Data que terminou
+    // 📅 Data de término (pode ser null → vínculo ativo)
     private LocalDate dataFim;
-    
+
+    // 🧠 Regra automática antes de salvar
+    @PrePersist
+    @PreUpdate
+    public void validarDatas() {
+        if (dataFim != null && dataFim.isBefore(dataInicio)) {
+            throw new RuntimeException("Data fim não pode ser antes da data início");
+        }
+    }
 }
