@@ -18,6 +18,9 @@ public class FornecedorDTO {
         this.id = fornecedor.getId();
         this.nome = fornecedor.getNome();
         this.email = fornecedor.getEmail();
-        this.status = fornecedor.getStatus().name();
+        this.status = fornecedor.getStatus() 
+            != null ? fornecedor.getStatus()
+            .name() 
+            : null;
     }
 }

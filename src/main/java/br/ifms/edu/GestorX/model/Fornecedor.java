@@ -3,24 +3,18 @@ package br.ifms.edu.GestorX.model;
 import java.util.List;
 
 import br.ifms.edu.GestorX.enums.StatusFornecedor;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.Data;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Data 
+@Getter
+@Setter
 @NoArgsConstructor
+@Entity
 @Table(name = "tb_supplier")
 public class Fornecedor {
 
@@ -28,15 +22,33 @@ public class Fornecedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 🏭 Nome obrigatório
+    @NotBlank
     private String nome;
-    private Integer telefone;
+
+    // 📞 Telefone como String (correto)
+    private String telefone;
+
+    // 📧 Email com validação
+    @Email
     private String email;
+
     private String endereco;
 
-    // NO RELACIONAMENTO COM A ENTIDADE INTERMEDIÁRIAEE
+    // 🔗 Relacionamento com entidade intermediária
     @OneToMany(mappedBy = "fornecedor")
     private List<FornecedorProduto> fornecedorProdutos;
 
+    // 📊 Status
     @Enumerated(EnumType.STRING)
+    @NotNull
     private StatusFornecedor status;
+
+    // 🔥 Define valor padrão
+    @PrePersist
+    public void prePersist() {
+        if (this.status == null) {
+            this.status = StatusFornecedor.ATIVO;
+        }
+    }
 }

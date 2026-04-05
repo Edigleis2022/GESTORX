@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import br.ifms.edu.GestorX.dto.FornecedorDTO;
+import br.ifms.edu.GestorX.dto.FornecedorRequestDTO;
+import br.ifms.edu.GestorX.dto.FornecedorResponseDTO;
 import br.ifms.edu.GestorX.enums.StatusFornecedor;
 import br.ifms.edu.GestorX.model.Fornecedor;
 import br.ifms.edu.GestorX.model.FornecedorProduto;
@@ -20,77 +22,105 @@ public class FornecedorServiceImpl implements FornecedorService {
         this.repository = repository;
     }
 
-    public Fornecedor salvar(Fornecedor fornecedor) {
-        return repository.save(fornecedor);
+    // 🏭 Criar fornecedor
+    @Override
+    public FornecedorResponseDTO salvar(FornecedorRequestDTO dto) {
+
+        Fornecedor fornecedor = new Fornecedor();
+
+        fornecedor.setNome(dto.getNome());
+        fornecedor.setTelefone(dto.getTelefone());
+        fornecedor.setEmail(dto.getEmail());
+        fornecedor.setEndereco(dto.getEndereco());
+
+        fornecedor.setStatus(
+            dto.getStatus() != null
+                ? dto.getStatus()
+                : StatusFornecedor.ATIVO
+        );
+
+        return toDTO(repository.save(fornecedor));
     }
 
-    public List<FornecedorDTO> listar() {
+    // 📋 Listar
+    @Override
+    public List<FornecedorResponseDTO> listar() {
         return repository.findAll()
                 .stream()
-                .map(FornecedorDTO:: new)
+                .map(this::toDTO)
                 .collect(Collectors.toList());
     }
 
+    // 🔍 Buscar por ID
     @Override
-    public FornecedorDTO buscarPorId(Long id) {
+    public FornecedorResponseDTO buscarPorId(Long id) {
 
-        // Busca forncecedor pelo ID
         Fornecedor fornecedor = repository.findById(id)
-                // Se não encontrar, lança erro
                 .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
-        
-                // Converte para DTO
-                return new FornecedorDTO(fornecedor);
+
+        return toDTO(fornecedor);
     }
 
+    // ❌ Inativar
     @Override
-    public void deletar(Long id) {
-        // Verifica se o fornecedor existe
+    public void inativar(Long id) {
+
         Fornecedor fornecedor = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
 
-        // Em vez de deletar, inativa
         fornecedor.setStatus(StatusFornecedor.INATIVO);
 
         repository.save(fornecedor);
     }
 
+    // ✏️ Atualizar
     @Override
-    public FornecedorDTO atualizar(Long id, Fornecedor fornecedor) {
+    public FornecedorResponseDTO atualizar(Long id, FornecedorRequestDTO dto) {
 
-        // Verifica se o fornecedor existe
-        Fornecedor existente = repository.findById(id)
+        Fornecedor fornecedor = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
 
-        // Atualiza os campos do fornecedor existente
-        existente.setNome(fornecedor.getNome());
-        existente.setEmail(fornecedor.getEmail());
-        existente.setTelefone(fornecedor.getTelefone());
-        existente.setEndereco(fornecedor.getEndereco());
-        existente.setStatus(fornecedor.getStatus());
+        fornecedor.setNome(dto.getNome());
+        fornecedor.setTelefone(dto.getTelefone());
+        fornecedor.setEmail(dto.getEmail());
+        fornecedor.setEndereco(dto.getEndereco());
 
-        Fornecedor atualizado = repository.save(existente);
+        if (dto.getStatus() != null) {
+            fornecedor.setStatus(dto.getStatus());
+        }
 
-        // Salva as alterações
-        return new FornecedorDTO(atualizado);
+        return toDTO(repository.save(fornecedor));
     }
 
+    // 🔗 Encerrar vínculo
     @Override
     public void encerrarVinculo(Long fornecedorId, Long produtoId) {
 
-        // . Buscar forneced
         Fornecedor fornecedor = repository.findById(fornecedorId)
-            .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
 
-            // 2. Percorrer os vínculos
-            for (FornecedorProduto fp : fornecedor.getFornecedorProdutos()) {
-                if (fp.getProduto().getId().equals(produtoId)) {
-                    // 3. Encerrar o vínculo
-                    fp.setDataFim(LocalDate.now());
-                    break;
-                }
+        for (FornecedorProduto fp : fornecedor.getFornecedorProdutos()) {
+            if (fp.getProduto().getId().equals(produtoId) && fp.getDataFim() == null) {
+                fp.setDataFim(LocalDate.now());
+                break;
             }
-            // 5 .Salvar fornecedor (atualiza tudo)
-            repository.save(fornecedor);
+        }
+
+        repository.save(fornecedor);
+    }
+
+    // 🔄 Conversão Entity → ResponseDTO
+    private FornecedorResponseDTO toDTO(Fornecedor fornecedor) {
+
+        FornecedorResponseDTO dto = new FornecedorResponseDTO();
+
+        dto.setId(fornecedor.getId());
+        dto.setNome(fornecedor.getNome());
+        dto.setTelefone(fornecedor.getTelefone());
+        dto.setEmail(fornecedor.getEmail());
+        dto.setEndereco(fornecedor.getEndereco());
+        dto.setStatus(fornecedor.getStatus());
+
+        return dto;
     }
 }

@@ -1,28 +1,27 @@
 package br.ifms.edu.GestorX.service;
 
 import java.util.List;
-import br.ifms.edu.GestorX.dto.FornecedorDTO;
-import br.ifms.edu.GestorX.model.Fornecedor;
 
+import br.ifms.edu.GestorX.dto.FornecedorRequestDTO;
+import br.ifms.edu.GestorX.dto.FornecedorResponseDTO;
 
 public interface FornecedorService {
 
-    //Salva Fornecedor
-    Fornecedor salvar(Fornecedor fornecedor);
+    // 🏭 Criar fornecedor
+    FornecedorResponseDTO salvar(FornecedorRequestDTO dto);
 
-    // Listar
-    List<FornecedorDTO> listar(); //Lista usando DTO
+    // 📋 Listar fornecedores
+    List<FornecedorResponseDTO> listar();
 
-    // Buscar por ID
-    FornecedorDTO buscarPorId(Long id);
+    // 🔍 Buscar por ID
+    FornecedorResponseDTO buscarPorId(Long id);
 
-    //Deletar (inativar)
-    void deletar(Long id);
-    
-    // Atualizar (retorna DTO))
-    FornecedorDTO atualizar(Long id, Fornecedor fornecedor);
+    // ❌ Inativar fornecedor
+    void inativar(Long id);
 
-    // Encerrar vínculo 
+    // ✏️ Atualizar fornecedor
+    FornecedorResponseDTO atualizar(Long id, FornecedorRequestDTO dto);
+
+    // 🔗 Encerrar vínculo com produto
     void encerrarVinculo(Long fornecedorId, Long produtoId);
-
 }
