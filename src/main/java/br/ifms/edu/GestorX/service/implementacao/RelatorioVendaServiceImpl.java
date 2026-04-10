@@ -37,7 +37,7 @@ public class RelatorioVendaServiceImpl implements RelatorioVendaService {
 
         // 🔄 Converter Venda → VendaResponseDTO
         List<VendaResponseDTO> vendasDTO = vendas.stream()
-                .map(VendaResponseDTO::new) // depende do seu construtor
+                .map(VendaResponseDTO::fromEntity) // depende do seu construtor
                 .toList();
 
         // 📦 Monta resposta
