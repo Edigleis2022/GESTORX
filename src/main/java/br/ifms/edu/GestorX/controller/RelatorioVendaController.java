@@ -1,34 +1,29 @@
 package br.ifms.edu.GestorX.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.ifms.edu.GestorX.model.RelatorioVenda;
+import br.ifms.edu.GestorX.dto.RelatorioVendaRequestDTO;
+import br.ifms.edu.GestorX.dto.RelatorioVendaResponseDTO;
 import br.ifms.edu.GestorX.service.RelatorioVendaService;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/relatorio_venda")
+@RequestMapping("/relatorios/vendas")
+@RequiredArgsConstructor
 public class RelatorioVendaController {
 
     private final RelatorioVendaService service;
 
-    public RelatorioVendaController(RelatorioVendaService service){
-        this.service = service;
-    }
-
     @PostMapping
-    public RelatorioVenda salvar(@RequestBody RelatorioVenda relatorioVenda){
-        return service.salvar(relatorioVenda);
-    }
+    public ResponseEntity<RelatorioVendaResponseDTO> gerarRelatorio(
+            @RequestBody RelatorioVendaRequestDTO request) {
 
-    @GetMapping
-    public List<RelatorioVenda> listar(){
-        return service.listar();
+        RelatorioVendaResponseDTO response = service.gerarRelatorio(request);
+
+        return ResponseEntity.ok(response);
     }
-        
 }
