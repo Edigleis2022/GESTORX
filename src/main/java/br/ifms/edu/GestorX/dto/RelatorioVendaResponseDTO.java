@@ -16,7 +16,7 @@ public class RelatorioVendaResponseDTO {
     
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private Double totalVendas;
+    private Double totalVendas; 
     private Long quantidadeVendas;
-    private List<VendaResponseDTO> vendas;
+    private List<VendaResponseDTO> vendas; // 📦 lista completa
 }
