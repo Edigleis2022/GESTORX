@@ -16,37 +16,40 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RelatorioVendaServiceImpl implements RelatorioVendaService {
 
-    private final VendaRepository vendaRepository;
+        private final VendaRepository vendaRepository;
 
-    @Override
-    public RelatorioVendaResponseDTO gerarRelatorio(RelatorioVendaRequestDTO request) {
+        @Override
+        public RelatorioVendaResponseDTO gerarRelatorio(RelatorioVendaRequestDTO request) {
 
-        // 📅 Busca vendas no período informado
-        List<Venda> vendas = vendaRepository.findByDataVendaBetween(
-                request.getDataInicio(),
-                request.getDataFim()
-        );
+                // ✅ Validação de datas
+                if (request.getDataInicio().isAfter(request.getDataFim())) {
+                        throw new RuntimeException("Data início não pode ser maior que data fim");
+                }
 
-        // 💰 Soma total das vendas
-        Double total = vendas.stream()
-                .mapToDouble(Venda::getValorTotal)
-                .sum();
+                // 📅 Busca vendas no período informado
+                List<Venda> vendas = vendaRepository.findByDataVendaBetween(
+                                request.getDataInicio(),
+                                request.getDataFim());
 
-        // 🔢 Quantidade de vendas
-        Long quantidade = (long) vendas.size();
+                // 💰 Soma total das vendas
+                Double total = vendas.stream()
+                                .mapToDouble(Venda::getValorTotal)
+                                .sum();
 
-        // 🔄 Converter Venda → VendaResponseDTO
-        List<VendaResponseDTO> vendasDTO = vendas.stream()
-                .map(VendaResponseDTO::fromEntity) // depende do seu construtor
-                .toList();
+                // 🔢 Quantidade de vendas
+                Long quantidade = (long) vendas.size();
 
-        // 📦 Monta resposta
-        return new RelatorioVendaResponseDTO(
-                request.getDataInicio(),
-                request.getDataFim(),
-                total,
-                quantidade,
-                vendasDTO
-        );
-    }
+                // 🔄 Converter Venda → VendaResponseDTO
+                List<VendaResponseDTO> vendasDTO = vendas.stream()
+                                .map(VendaResponseDTO::fromEntity) // depende do seu construtor
+                                .toList();
+
+                // 📦 Monta resposta
+                return new RelatorioVendaResponseDTO(
+                                request.getDataInicio(),
+                                request.getDataFim(),
+                                total,
+                                quantidade,
+                                vendasDTO);
+        }
 }
