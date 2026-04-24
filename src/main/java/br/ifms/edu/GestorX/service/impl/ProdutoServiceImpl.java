@@ -17,7 +17,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         this.repository = repository;
     }
 
-    // 🔹 Método reutilizável (evita repetição)
+    // 🔹 Método reutilizável
     private Produto buscarOuFalhar(Long id) {
         return repository.findById(id)
             .orElseThrow(() -> new RuntimeException("Produto com ID " + id + " não encontrado"));
@@ -29,7 +29,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         Produto salvo = repository.save(produto);
 
-        return new ProdutoDTO(salvo);
+        return ProdutoDTO.fromEntity(salvo);
     }
 
     // 🔹 Listar todos
@@ -38,7 +38,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         return repository.findAll()
                 .stream()
-                .map(ProdutoDTO::new)
+                .map(ProdutoDTO::fromEntity) // 🔥 corrigido
                 .toList();
     }
 
@@ -48,7 +48,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         Produto produto = buscarOuFalhar(id);
 
-        return new ProdutoDTO(produto);
+        return ProdutoDTO.fromEntity(produto);
     }
 
     // 🔹 Atualizar produto
@@ -64,7 +64,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         Produto atualizado = repository.save(produto);
 
-        return new ProdutoDTO(atualizado);
+        return ProdutoDTO.fromEntity(atualizado);
     }
 
     // 🔹 Deletar produto
