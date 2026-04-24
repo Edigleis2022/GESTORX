@@ -2,16 +2,22 @@ package br.ifms.edu.GestorX.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import br.ifms.edu.GestorX.dto.UsuarioRequestDTO;
+import br.ifms.edu.GestorX.dto.UsuarioResponseDTO;
 import br.ifms.edu.GestorX.model.Usuario;
 import br.ifms.edu.GestorX.service.UsuarioService;
 
-@Service
+
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -22,16 +28,18 @@ public class UsuarioController {
         this.service = service;
     }
 
+    //  🔹 Criar usuário
     @PostMapping
-    public Usuario salvar(@RequestBody Usuario usuario) {
-        return service.salvar(usuario);
+    public ResponseEntity<UsuarioResponseDTO> salvar(
+            @RequestBody @Valid UsuarioRequestDTO dto) {
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(service.salvar(dto));
     }
 
+    // 🔹 Listar usuários
     @GetMapping
-    public List<Usuario> listar() {
-        return service.listar();
+    public ResponseEntity<List<UsuarioResponseDTO>> listar() {
+        return ResponseEntity.ok(service.listar());
     }
-
-    
-
 }
