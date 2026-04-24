@@ -41,5 +41,14 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
-    
+
+    // 🔹 NOVOS CAMPOS
+
+    @NotBlank
+    @Column(unique = true)
+    private String cpf;
+
+    private String cargo;
+
+    private String estabelecimento;
 }
