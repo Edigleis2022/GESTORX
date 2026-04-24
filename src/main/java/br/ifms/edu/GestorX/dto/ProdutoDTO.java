@@ -4,7 +4,7 @@ import br.ifms.edu.GestorX.model.Produto;
 import lombok.Data;
 
 
-@Data
+@Data // Lombok: gera getters, setters, toString, equals e hashCode automaticamente
 public class ProdutoDTO {
 
     private Long id;
@@ -13,14 +13,38 @@ public class ProdutoDTO {
     private Integer quantidade;
     private Double preco;
 
-    public ProdutoDTO(Produto produto) {
-        this.id = produto.getId();
-        this.nome = produto.getNome();
-        this.preco = produto.getPreco();
-        this.categoria = produto.getCategoria() != null 
-        ? produto.getCategoria()
-        .name() 
-        : null;
-        this.quantidade = produto.getQuantidade();
+    /**
+     * 🔄 Método estático responsável por converter a entidade Produto
+     * em um DTO (Data Transfer Object).
+     *
+     * Vantagens:
+     * - Centraliza a conversão em um único lugar
+     * - Evita repetição de código no Service
+     * - Mantém o código mais limpo e organizado
+     */
+    public static ProdutoDTO fromEntity(Produto produto) {
+
+        // Cria uma nova instância do DTO
+        ProdutoDTO dto = new ProdutoDTO();
+
+        // Copia os dados básicos da entidade para o DTO
+        dto.setId(produto.getId());
+        dto.setNome(produto.getNome());
+        dto.setPreco(produto.getPreco());
+
+        /**
+         * 📌 Conversão de ENUM para String
+         * - Verifica se a categoria não é nula para evitar NullPointerException
+         * - Caso exista, converte para texto usando .name()
+         */
+        dto.setCategoria(produto.getCategoria() != null 
+                ? produto.getCategoria().name() 
+                : null);
+
+        // Define a quantidade disponível do produto
+        dto.setQuantidade(produto.getQuantidade());
+
+        // Retorna o DTO pronto para uso (geralmente enviado para o front-end)
+        return dto;
     }
 }
