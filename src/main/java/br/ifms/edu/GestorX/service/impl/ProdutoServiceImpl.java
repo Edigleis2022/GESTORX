@@ -1,4 +1,4 @@
-package br.ifms.edu.GestorX.service.implementacao;
+package br.ifms.edu.GestorX.service.impl;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
