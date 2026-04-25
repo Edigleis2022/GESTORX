@@ -18,11 +18,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+            // 🔥 Desativa CSRF (necessário pro H2)
             .csrf(csrf -> csrf.disable())
+
+            // 🔥 Libera rotas
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**", "/usuarios/**").permitAll() // 🔥 libera login e cadastro
+                .requestMatchers("/auth/**", "/usuarios/**", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )
+
+            // 🔥 Permite H2 abrir em frame (ESSENCIAL)
+            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+
             .build();
     }
 }
