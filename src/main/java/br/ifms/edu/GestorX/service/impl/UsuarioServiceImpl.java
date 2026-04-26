@@ -1,7 +1,10 @@
 package br.ifms.edu.GestorX.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -63,17 +66,17 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuario;
     }
 
-     public UsuarioResponseDTO login(LoginRequestDTO dto) {
+    public UsuarioResponseDTO login(LoginRequestDTO dto) {
 
-         Usuario usuario = repository.findByEmail(dto.getEmail())
+        Usuario usuario = repository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new RegraNegocioException("Email ou senha inválidos"));
 
         // 🔐 compara senha digitada com criptografada
         if (!passwordEncoder.matches(dto.getSenha(), usuario.getSenha())) {
-             throw new RegraNegocioException("Email ou senha inválidos");
-         }
+            throw new RegraNegocioException("Email ou senha inválidos");
+        }
 
-         return UsuarioResponseDTO.fromEntity(usuario);
- }
+        return UsuarioResponseDTO.fromEntity(usuario);
+    }
 
 }

@@ -53,20 +53,4 @@ public class SecurityConfig {
                 .build();
     }
 
-    // 🔥 Usuários fake para teste
-    @Bean
-    public UserDetailsService users() {
-        return new InMemoryUserDetailsManager(
-
-                User.withUsername("admin")
-                        .password(passwordEncoder().encode("123"))
-                        .roles("ADMIN")
-                        .build(),
-
-                User.withUsername("func")
-                        .password(passwordEncoder().encode("123"))
-                        .roles("FUNCIONARIO")
-                        .build()
-        );
-    }
 }
