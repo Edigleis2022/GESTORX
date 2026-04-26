@@ -3,33 +3,70 @@ package br.ifms.edu.GestorX.securityConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-    
+
+    // 🔐 Criptografia de senha
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // 🔐 Configuração de segurança (VERSÃO MODERNA)
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-            // 🔥 Desativa CSRF (necessário pro H2)
-            .csrf(csrf -> csrf.disable())
+                // 🔥 Desativa CSRF (API REST)
+                .csrf(csrf -> csrf.disable())
 
-            // 🔥 Libera rotas
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**", "/usuarios/**", "/h2-console/**").permitAll()
-                .anyRequest().authenticated()
-            )
+                // 🔥 Permite H2 Console
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 
-            // 🔥 Permite H2 abrir em frame (ESSENCIAL)
-            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+                // 🔐 Regras de acesso
+                .authorizeHttpRequests(auth -> auth
 
-            .build();
+                        // 🔓 Rotas públicas
+                        .requestMatchers("/auth/**", "/h2-console/**").permitAll()
+
+                        // 🔐 ADMIN
+                        .requestMatchers("/usuarios/**").hasRole("ADMIN")
+
+                        // 🔐 ADMIN + FUNCIONARIO
+                        .requestMatchers("/produtos/**").hasAnyRole("ADMIN", "FUNCIONARIO")
+                        .requestMatchers("/estoque/**").hasAnyRole("ADMIN", "FUNCIONARIO")
+                        .requestMatchers("/movimentos/**").hasAnyRole("ADMIN", "FUNCIONARIO")
+
+                        // 🔒 Qualquer outra precisa login
+                        .anyRequest().authenticated()
+                )
+
+                // 🔐 Basic Auth (para testes no Thunder Client)
+                .httpBasic(httpBasic -> {})
+
+                .build();
+    }
+
+    // 🔥 Usuários fake para teste
+    @Bean
+    public UserDetailsService users() {
+        return new InMemoryUserDetailsManager(
+
+                User.withUsername("admin")
+                        .password(passwordEncoder().encode("123"))
+                        .roles("ADMIN")
+                        .build(),
+
+                User.withUsername("func")
+                        .password(passwordEncoder().encode("123"))
+                        .roles("FUNCIONARIO")
+                        .build()
+        );
     }
 }
