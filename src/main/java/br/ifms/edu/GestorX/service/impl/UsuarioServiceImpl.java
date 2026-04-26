@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.ifms.edu.GestorX.dto.LoginRequestDTO;
 import br.ifms.edu.GestorX.dto.UsuarioRequestDTO;
 import br.ifms.edu.GestorX.dto.UsuarioResponseDTO;
+import br.ifms.edu.GestorX.exception.RegraNegocioException;
 import br.ifms.edu.GestorX.model.Usuario;
 import br.ifms.edu.GestorX.repository.UsuarioRepository;
 import br.ifms.edu.GestorX.service.UsuarioService;
@@ -62,16 +63,17 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuario;
     }
 
-    public UsuarioResponseDTO login(LoginRequestDTO dto) {
+     public UsuarioResponseDTO login(LoginRequestDTO dto) {
 
-        Usuario usuario = repository.findByEmail(dto.getEmail())
-                .orElseThrow(() -> new RuntimeException("Email ou senha inválidos"));
+         Usuario usuario = repository.findByEmail(dto.getEmail())
+                .orElseThrow(() -> new RegraNegocioException("Email ou senha inválidos"));
 
         // 🔐 compara senha digitada com criptografada
         if (!passwordEncoder.matches(dto.getSenha(), usuario.getSenha())) {
-            throw new RuntimeException("Email ou senha inválidos");
-        }
+             throw new RegraNegocioException("Email ou senha inválidos");
+         }
 
-        return UsuarioResponseDTO.fromEntity(usuario);
-    }
+         return UsuarioResponseDTO.fromEntity(usuario);
+ }
+
 }
