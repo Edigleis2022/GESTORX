@@ -2,12 +2,10 @@ package br.ifms.edu.GestorX.securityConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -32,6 +30,9 @@ public class SecurityConfig {
                 // 🔐 Regras de acesso
                 .authorizeHttpRequests(auth -> auth
 
+                        // 🔓 liberar cadastro inicial
+                        .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+
                         // 🔓 Rotas públicas
                         .requestMatchers("/auth/**", "/h2-console/**").permitAll()
 
@@ -44,11 +45,11 @@ public class SecurityConfig {
                         .requestMatchers("/movimentos/**").hasAnyRole("ADMIN", "FUNCIONARIO")
 
                         // 🔒 Qualquer outra precisa login
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
 
                 // 🔐 Basic Auth (para testes no Thunder Client)
-                .httpBasic(httpBasic -> {})
+                .httpBasic(httpBasic -> {
+                })
 
                 .build();
     }

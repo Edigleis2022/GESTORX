@@ -29,6 +29,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public UsuarioResponseDTO salvar(UsuarioRequestDTO dto) {
 
+        // 🔴 valida CPF duplicado
+        if (repository.existsByCpf(dto.getCpf())) {
+            throw new RegraNegocioException("CPF já cadastrado");
+        }
+
         Usuario usuario = toEntity(dto);
 
         // 🔐 Criptografar senha ANTES de salvar
