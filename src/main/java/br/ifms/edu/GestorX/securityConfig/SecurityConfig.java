@@ -33,6 +33,8 @@ public class SecurityConfig {
                         // 🔓 liberar cadastro inicial
                         .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
 
+                        .requestMatchers("/usuarios/me").authenticated()
+
                         // 🔓 Rotas públicas
                         .requestMatchers("/auth/**", "/h2-console/**").permitAll()
 

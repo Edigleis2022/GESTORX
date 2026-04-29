@@ -1,7 +1,7 @@
 package br.ifms.edu.GestorX.controller;
 
 import java.util.List;
-
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,5 +40,12 @@ public class UsuarioController {
     @GetMapping
     public ResponseEntity<List<UsuarioResponseDTO>> listar() {
         return ResponseEntity.ok(service.listar());
+    }
+
+    @GetMapping("/me")
+    public UsuarioResponseDTO getUsuarioLogado(
+            @AuthenticationPrincipal Usuario usuario) {
+
+        return UsuarioResponseDTO.fromEntity(usuario);
     }
 }
