@@ -1,13 +1,9 @@
 package br.ifms.edu.GestorX.service.impl;
 
-import java.util.Collection;
-import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import br.ifms.edu.GestorX.dto.LoginRequestDTO;
 import br.ifms.edu.GestorX.dto.UsuarioRequestDTO;
 import br.ifms.edu.GestorX.dto.UsuarioResponseDTO;

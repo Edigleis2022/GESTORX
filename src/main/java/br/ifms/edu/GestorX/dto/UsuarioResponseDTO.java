@@ -17,7 +17,6 @@ public class UsuarioResponseDTO {
     private TipoUsuario tipoUsuario;
 
     // Campos da tela
-    private String cpf;
     private String cargo;
     private String estabelecimento;
 
@@ -33,7 +32,6 @@ public class UsuarioResponseDTO {
         dto.setEmail(usuario.getEmail());
         dto.setTipoUsuario(usuario.getTipoUsuario());
 
-        dto.setCpf(usuario.getCpf());
         dto.setCargo(usuario.getCargo());
         dto.setEstabelecimento(usuario.getEstabelecimento());
 
