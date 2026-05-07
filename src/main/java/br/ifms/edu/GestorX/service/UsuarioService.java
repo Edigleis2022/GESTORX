@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import br.ifms.edu.GestorX.dto.LoginRequestDTO;
 import br.ifms.edu.GestorX.dto.UsuarioRequestDTO;
 import br.ifms.edu.GestorX.dto.UsuarioResponseDTO;
+import br.ifms.edu.GestorX.model.Usuario;
 import br.ifms.edu.GestorX.dto.LoginRequestDTO;
 
 @Service
@@ -16,4 +17,7 @@ public interface UsuarioService {
     UsuarioResponseDTO login(LoginRequestDTO dto);
 
     List<UsuarioResponseDTO> listar();
+
+    // 🔹 Buscar usuário por ID
+    Usuario buscarOuFalhar(Long id);
 }
