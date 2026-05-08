@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.dto;
 
 import java.time.LocalDate;
-
 import br.ifms.edu.GestorX.enums.TipoPagamento;
 import br.ifms.edu.GestorX.model.Venda;
 import lombok.Data;

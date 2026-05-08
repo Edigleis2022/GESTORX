@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.dto;
 
 import java.time.LocalDateTime;
-
 import br.ifms.edu.GestorX.enums.TipoMovimento;
 import lombok.Data;
 

@@ -1,8 +1,6 @@
 package br.ifms.edu.GestorX.service.impl;
 
-import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 import br.ifms.edu.GestorX.model.Estoque;
 import br.ifms.edu.GestorX.repository.EstoqueRepository;

@@ -1,9 +1,7 @@
 package br.ifms.edu.GestorX.controller;
 
 import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
-
 import br.ifms.edu.GestorX.dto.FornecedorProdutoRequestDTO;
 import br.ifms.edu.GestorX.dto.FornecedorProdutoResponseDTO;
 import br.ifms.edu.GestorX.service.FornecedorProdutoService;

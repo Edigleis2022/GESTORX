@@ -2,9 +2,7 @@ package br.ifms.edu.GestorX.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
-
 import br.ifms.edu.GestorX.dto.FornecedorProdutoRequestDTO;
 import br.ifms.edu.GestorX.dto.FornecedorProdutoResponseDTO;
 import br.ifms.edu.GestorX.model.Fornecedor;

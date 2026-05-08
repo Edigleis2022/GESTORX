@@ -1,10 +1,8 @@
 package br.ifms.edu.GestorX.service.impl;
 
 import java.util.List;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import br.ifms.edu.GestorX.dto.LoginRequestDTO;
 import br.ifms.edu.GestorX.dto.UsuarioRequestDTO;
 import br.ifms.edu.GestorX.dto.UsuarioResponseDTO;

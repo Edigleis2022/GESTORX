@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.model;
 
 import java.util.List;
-
 import br.ifms.edu.GestorX.enums.StatusFornecedor;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

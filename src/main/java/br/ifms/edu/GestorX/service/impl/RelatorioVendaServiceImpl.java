@@ -3,7 +3,6 @@ package br.ifms.edu.GestorX.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
 import br.ifms.edu.GestorX.dto.RelatorioVendaRequestDTO;
 import br.ifms.edu.GestorX.dto.RelatorioVendaResponseDTO;
 import br.ifms.edu.GestorX.dto.VendaResponseDTO;

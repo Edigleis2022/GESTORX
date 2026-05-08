@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
-import br.ifms.edu.GestorX.dto.FornecedorDTO;
 import br.ifms.edu.GestorX.dto.FornecedorRequestDTO;
 import br.ifms.edu.GestorX.dto.FornecedorResponseDTO;
 import br.ifms.edu.GestorX.enums.StatusFornecedor;

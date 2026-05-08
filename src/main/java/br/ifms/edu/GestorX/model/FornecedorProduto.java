@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.model;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

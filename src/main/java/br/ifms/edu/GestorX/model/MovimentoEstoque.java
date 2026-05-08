@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.model;
 
 import java.time.LocalDateTime;
-
 import br.ifms.edu.GestorX.enums.TipoMovimento;
 import jakarta.persistence.*;
 import lombok.Getter;

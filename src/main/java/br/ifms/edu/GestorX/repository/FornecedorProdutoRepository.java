@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import br.ifms.edu.GestorX.model.FornecedorProduto;
 
 public interface FornecedorProdutoRepository extends JpaRepository<FornecedorProduto, Long> {

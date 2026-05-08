@@ -1,10 +1,8 @@
 package br.ifms.edu.GestorX.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import br.ifms.edu.GestorX.dto.MovimentoEstoqueRequestDTO;
 import br.ifms.edu.GestorX.dto.MovimentoEstoqueResponseDTO;
 import br.ifms.edu.GestorX.enums.TipoMovimento;

@@ -2,7 +2,6 @@ package br.ifms.edu.GestorX.service.impl;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-import java.util.stream.Collectors;
 import br.ifms.edu.GestorX.dto.ProdutoDTO;
 import br.ifms.edu.GestorX.model.Produto;
 import br.ifms.edu.GestorX.repository.ProdutoRepository;

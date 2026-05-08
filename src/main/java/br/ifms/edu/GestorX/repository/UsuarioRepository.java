@@ -2,7 +2,6 @@ package br.ifms.edu.GestorX.repository;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import br.ifms.edu.GestorX.model.Usuario;

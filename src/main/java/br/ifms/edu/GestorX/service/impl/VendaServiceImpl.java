@@ -3,9 +3,7 @@ package br.ifms.edu.GestorX.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
-
 import br.ifms.edu.GestorX.dto.MovimentoEstoqueRequestDTO;
 import br.ifms.edu.GestorX.dto.VendaRequestDTO;
 import br.ifms.edu.GestorX.dto.VendaResponseDTO;

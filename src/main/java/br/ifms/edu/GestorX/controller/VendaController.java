@@ -1,9 +1,7 @@
 package br.ifms.edu.GestorX.controller;
 
 import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
-
 import br.ifms.edu.GestorX.dto.VendaRequestDTO;
 import br.ifms.edu.GestorX.dto.VendaResponseDTO;
 import br.ifms.edu.GestorX.service.VendaService;

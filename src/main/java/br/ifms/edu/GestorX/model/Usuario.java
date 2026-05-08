@@ -2,7 +2,6 @@ package br.ifms.edu.GestorX.model;
 
 import java.util.Collection;
 import java.util.List;
-
 import br.ifms.edu.GestorX.enums.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

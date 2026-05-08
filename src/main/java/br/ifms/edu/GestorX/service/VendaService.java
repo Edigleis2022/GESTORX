@@ -1,7 +1,6 @@
 package br.ifms.edu.GestorX.service;
 
 import java.util.List;
-
 import br.ifms.edu.GestorX.dto.VendaRequestDTO;
 import br.ifms.edu.GestorX.dto.VendaResponseDTO;
 
