@@ -35,6 +35,8 @@ public class SecurityConfig {
 
                 // 🔐 Regras de acesso
                 .authorizeHttpRequests(auth -> auth
+                        // 🔓 libera preflight CORS
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // 🔓 liberar cadastro inicial
                         .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
