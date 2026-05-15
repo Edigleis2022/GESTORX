@@ -27,8 +27,12 @@ public class SecurityConfig {
         return http
                 // 🔥 Desativa CSRF (API REST)
                 .csrf(csrf -> csrf.disable())
-                
-                .cors(cors -> {})
+
+                .cors(cors -> cors
+                        .configurationSource(
+                                corsConfigurationSource()
+                        )
+                )
 
                 // 🔥 Permite H2 Console
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
