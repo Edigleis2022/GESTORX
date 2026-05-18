@@ -125,6 +125,14 @@ Define valores padronizados utilizados pelo sistema.
 - Implementação de UserDetails
 - Tokens JWT
 
+## ⚠️ Observação:
+A camada de segurança está em desenvolvimento e poderá receber novas implementações futuramente, como:
+
+- TokenService
+- JWT Filter
+- AuthorizationService
+- Refresh Token
+
 ---
 
 ## 🛠️ Tecnologias Utilizadas
