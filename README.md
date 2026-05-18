@@ -1,131 +1,191 @@
 🚧 Status: Em desenvolvimento (Projeto acadêmico)
 
-🚀 GetorX API
+# 🚀 GestorX API
 
-API REST desenvolvida com Spring Boot como parte de um projeto acadêmico em desenvolvimento, com foco na aplicação prática de arquitetura em camadas e boas práticas no desenvolvimento backend.
+API REST desenvolvida com Spring Boot como parte de um projeto acadêmico voltado ao gerenciamento de estoque para empresas de pequeno e médio porte, aplicando conceitos de arquitetura em camadas e boas práticas de desenvolvimento backend.
 
-📚 Contexto Acadêmico
+---
 
-Este projeto foi desenvolvido com o objetivo de aplicar conceitos estudados em sala de aula, incluindo:
+## 📚 Contexto Acadêmico
 
-Arquitetura em camadas
+Este projeto foi desenvolvido para aplicar conceitos estudados em sala de aula:
 
-Desenvolvimento de APIs REST
+- Arquitetura em camadas
+- Desenvolvimento de APIs REST
+- Spring Security
+- DTO (Data Transfer Object)
+- Tratamento global de exceções
+- Persistência com JPA/Hibernate
+- Relacionamentos entre entidades
+- Autenticação e autorização com JWT
+- Organização de projetos Java
 
-Organização e estruturação de projetos Java
+---
 
-Uso de DTO (Data Transfer Object)
+## 🏗️ Arquitetura do Projeto
 
-Tratamento global de exceções
+Estrutura seguindo o padrão:
 
-Persistência de dados com JPA/Hibernate
-
-🏗️ Arquitetura do Projeto
-
-O sistema foi estruturado seguindo o padrão:
-```
+```text
 controller → service → repository → model
                 ↓
                dto
                 ↓
             exception
+                ↓
+          securityConfig
 ```
 
-```
-📂 Estrutura de Pacotes
+---
 
-GetorX
+## 📂 Estrutura de Pacotes
+
+```text
+GestorX
+│
+├── Config
 │
 ├── controller
-│   ├── FornecedorController.java
+│   ├── UsuarioController.java
 │   ├── ProdutoController.java
-│   └── UsuarioController.java
+│   └── FornecedorController.java
 │
-├── service
-│   ├── implementacao
-│   ├── FornecedorService.java
-│   ├── ProdutoService.java
-│   └── UsuarioService.java
+├── dto
+│   ├── UsuarioRequestDTO.java
+│   ├── UsuarioResponseDTO.java
+│   ├── UsuarioDetalhadoDTO.java
+│   ├── ProdutoDTO.java
+│   └── FornecedorDTO.java
 │
-├── repository
+├── enums
+│   ├── CategoriaProduto.java
+│   ├── TipoUsuario.java
+│   └── StatusFornecedor.java
+│
+├── exception
+│   ├── GlobalExceptionHandler.java
+│   └── RecursoNaoEncontradoException.java
 │
 ├── model
 │   ├── Usuario.java
 │   ├── Produto.java
 │   ├── Fornecedor.java
-│   ├── Demanda.java
-│   └── EmitirNota.java
+│   └── FornecedorProduto.java
 │
-├── dto
-│   ├── ProdutoDTO.java
-│   └── FornecedorDTO.java
+├── repository
 │
-└── exception
-    ├── GlobalExceptionHandler.java
-    └── RecursoNaoEncontradoException.java
+├── securityConfig│
+│   ├── SecurityConfiguration.java│ 
+│   └── CustomUserDetailsService.java
+│
+├── service
+│   ├── UsuarioService.java
+│   ├── ProdutoService.java
+│   └── FornecedorService.java
+│
+└── GestorXApplication.java
 ```
-📌 Responsabilidade das Camadas
 
-Controller → Camada responsável pelos endpoints da API
+---
 
-Service → Implementação das regras de negócio
+## 📌 Responsabilidade das Camadas
 
-Repository → Comunicação com o banco de dados
+### Controller
+Responsável pelos endpoints da API.
 
-Model → Entidades do sistema
+### Service
+Contém as regras de negócio da aplicação.
 
-DTO → Transferência segura de dados entre camadas
+### Repository
+Realiza comunicação com banco de dados através do Spring Data JPA.
 
-Exception → Tratamento global de erros da aplicação
+### Model
+Representa as entidades do sistema.
 
-🛠️ Tecnologias Utilizadas
+### DTO
+Transfere dados entre camadas evitando exposição direta das entidades.
 
-Java
+### Exception
+Centraliza tratamento de erros.
 
-Spring Boot
+### SecurityConfig
+Responsável pela autenticação, autorização e configuração de segurança.
 
-Spring Data JPA
+### Enums
+Define valores padronizados utilizados pelo sistema.
 
-Hibernate
+---
 
-Maven
+## 🔐 Segurança Implementada
 
-🔌 Funcionalidades Implementadas
+- Spring Security
+- Controle de acesso por perfil
+- Autenticação de usuários
+- Controle de permissões
+- Implementação de UserDetails
+- Tokens JWT
 
-Cadastro de usuários
+---
 
-Cadastro de produtos
+## 🛠️ Tecnologias Utilizadas
 
-Cadastro de fornecedores
+- Java
+- Spring Boot
+- Spring Security
+- Spring Data JPA
+- Hibernate
+- Maven
+- PostgreSQL
+- JWT
 
-Tratamento global de exceções
+---
 
-Exceção personalizada para recurso não encontrado
+## 🔌 Funcionalidades Implementadas
 
-🚧 O projeto ainda está em desenvolvimento e pode receber novas funcionalidades.
+✅ Cadastro de usuários
 
-▶️ Como Executar o Projeto
+✅ Cadastro de produtos
+
+✅ Cadastro de fornecedores
+
+✅ Relacionamento fornecedor-produto
+
+✅ Tratamento global de exceções
+
+✅ Exceções personalizadas
+
+✅ Controle de acesso por perfil
+
+✅ Autenticação de usuários
+
+---
+
+## ▶️ Como executar
 
 ```bash
 git clone https://github.com/Edigleis2022/gestorx.git
+
 cd gestorx
+
 mvn spring-boot:run
 ```
 
-Requisitos:
+### Requisitos
 
-Java instalado
+- Java 21+
+- Maven
+- PostgreSQL
 
-Maven configurado no sistema
+---
 
-📌 Status
+## 📌 Status
 
-Projeto acadêmico em desenvolvimento, com foco na consolidação dos conceitos de backend com Spring Boot.
+Projeto acadêmico em desenvolvimento com foco na consolidação de conhecimentos em backend utilizando Spring Boot.
 
-👨‍🎓 Autores
+---
 
-Edigleis Pereira dos Santos
+## 👨‍🎓 Autores
 
-Bruno Severo de Oliveira
-
-Maria Eduarda Bronzatti Mesquita
+- Edigleis Pereira dos Santos
+- Bruno Severo de Oliveira
+- Maria Eduarda Bronzatti Mesquita
