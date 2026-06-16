@@ -12,6 +12,9 @@ public class ProdutoDTO {
     private String categoria;
     private Integer quantidade;
     private Double preco;
+    private String marca;
+    private String codigo;
+    private Integer estoqueMinimo;
 
     /**
      * 🔄 Método estático responsável por converter a entidade Produto
@@ -29,8 +32,11 @@ public class ProdutoDTO {
 
         // Copia os dados básicos da entidade para o DTO
         dto.setId(produto.getId());
+        dto.setCodigo(produto.getCodigo());
         dto.setNome(produto.getNome());
+        dto.setMarca(produto.getMarca());
         dto.setPreco(produto.getPreco());
+        dto.setEstoqueMinimo(produto.getEstoqueMinimo());
 
         /**
          * 📌 Conversão de ENUM para String

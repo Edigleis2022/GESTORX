@@ -2,6 +2,7 @@ package br.ifms.edu.GestorX.model;
 
 import java.util.List;
 import br.ifms.edu.GestorX.enums.CategoriaProduto;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,9 +26,14 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    private String codigo;
+
     private String nome;
+    private String marca;
     private Double preco;
     private Integer quantidade;
+    private Integer estoqueMinimo;
 
     @OneToMany(mappedBy = "produto")
     private List<FornecedorProduto> fornecedoresProdutos;
@@ -35,4 +41,5 @@ public class Produto {
     @NotNull
     @Enumerated(EnumType.STRING)
     private CategoriaProduto categoria;
+
 }

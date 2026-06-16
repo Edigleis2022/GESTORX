@@ -56,10 +56,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         Produto produto = buscarOuFalhar(id);
 
+        produto.setCodigo(produtoAtualizado.getCodigo());
         produto.setNome(produtoAtualizado.getNome());
+        produto.setMarca(produtoAtualizado.getMarca());
         produto.setPreco(produtoAtualizado.getPreco());
         produto.setQuantidade(produtoAtualizado.getQuantidade());
         produto.setCategoria(produtoAtualizado.getCategoria());
+        produto.setEstoqueMinimo(produtoAtualizado.getEstoqueMinimo());
 
         Produto atualizado = repository.save(produto);
 
