@@ -1,4 +1,4 @@
-# 🚧 GestorX
+# 🚧 GestorXpress
 
 Sistema web para gerenciamento de estoque desenvolvido como projeto acadêmico, aplicando conceitos de desenvolvimento Full Stack com Spring Boot, PostgreSQL e Next.js.
 
