@@ -1,174 +1,239 @@
-🚧 Status: Em desenvolvimento (Projeto acadêmico)
+# 🚧 GestorX
 
-# 🚀 GestorX API
-
-API REST desenvolvida com Spring Boot como parte de um projeto acadêmico voltado ao gerenciamento de estoque para empresas de pequeno e médio porte, aplicando conceitos de arquitetura em camadas e boas práticas de desenvolvimento backend.
+Sistema web para gerenciamento de estoque desenvolvido como projeto acadêmico, aplicando conceitos de desenvolvimento Full Stack com Spring Boot, PostgreSQL e Next.js.
 
 ---
 
-## 📚 Contexto Acadêmico
+# 🚀 Sobre o Projeto
 
-Este projeto foi desenvolvido para aplicar conceitos estudados em sala de aula:
+O GestorX foi criado com o objetivo de auxiliar pequenas e médias empresas no controle de estoque, produtos, fornecedores e usuários, aplicando conceitos de arquitetura em camadas, segurança, integração frontend/backend e persistência de dados.
 
-- Arquitetura em camadas
-- Desenvolvimento de APIs REST
-- Spring Security
-- DTO (Data Transfer Object)
-- Tratamento global de exceções
-- Persistência com JPA/Hibernate
-- Relacionamentos entre entidades
-- Autenticação e autorização com JWT
-- Organização de projetos Java
+O projeto está sendo desenvolvido como parte do Trabalho de Conclusão de Curso (TCC), evoluindo continuamente com novas funcionalidades.
 
 ---
 
-## 🏗️ Arquitetura do Projeto
+# 📚 Conceitos Aplicados
 
-Estrutura seguindo o padrão:
+* Arquitetura em Camadas
+* APIs REST
+* Spring Security
+* DTO (Data Transfer Object)
+* Tratamento Global de Exceções
+* Persistência com JPA/Hibernate
+* Relacionamentos entre Entidades
+* Integração Frontend ↔ Backend
+* React / Next.js
+* PostgreSQL
+* Controle de Acesso por Perfil
+* Boas Práticas de Desenvolvimento
+
+---
+
+# 🏗️ Arquitetura Geral
 
 ```text
-controller → service → repository → model
-                ↓
-               dto
-                ↓
-            exception
-                ↓
-          securityConfig
+Frontend (Next.js)
+        │
+        ▼
+Backend (Spring Boot)
+        │
+        ▼
+ PostgreSQL
 ```
 
 ---
 
-## 📂 Estrutura de Pacotes
+# 📂 Estrutura Backend
 
 ```text
 GestorX
 │
-├── Config
+├── config
 │
 ├── controller
-│   ├── UsuarioController.java
-│   ├── ProdutoController.java
-│   └── FornecedorController.java
+│   ├── UsuarioController
+│   ├── ProdutoController
+│   └── FornecedorController
 │
 ├── dto
-│   ├── UsuarioRequestDTO.java
-│   ├── UsuarioResponseDTO.java
-│   ├── UsuarioDetalhadoDTO.java
-│   ├── ProdutoDTO.java
-│   └── FornecedorDTO.java
 │
 ├── enums
-│   ├── CategoriaProduto.java
-│   ├── TipoUsuario.java
-│   └── StatusFornecedor.java
 │
 ├── exception
-│   ├── GlobalExceptionHandler.java
-│   └── RecursoNaoEncontradoException.java
 │
 ├── model
-│   ├── Usuario.java
-│   ├── Produto.java
-│   ├── Fornecedor.java
-│   └── FornecedorProduto.java
+│   ├── Usuario
+│   ├── Produto
+│   ├── Fornecedor
+│   └── FornecedorProduto
 │
 ├── repository
 │
-├── securityConfig│
-│   ├── SecurityConfiguration.java│ 
-│   └── CustomUserDetailsService.java
+├── securityConfig
 │
 ├── service
-│   ├── UsuarioService.java
-│   ├── ProdutoService.java
-│   └── FornecedorService.java
 │
-└── GestorXApplication.java
+└── GestorXApplication
 ```
 
 ---
 
-## 📌 Responsabilidade das Camadas
+# 📂 Estrutura Frontend
 
-### Controller
-Responsável pelos endpoints da API.
-
-### Service
-Contém as regras de negócio da aplicação.
-
-### Repository
-Realiza comunicação com banco de dados através do Spring Data JPA.
-
-### Model
-Representa as entidades do sistema.
-
-### DTO
-Transfere dados entre camadas evitando exposição direta das entidades.
-
-### Exception
-Centraliza tratamento de erros.
-
-### SecurityConfig
-Responsável pela autenticação, autorização e configuração de segurança.
-
-### Enums
-Define valores padronizados utilizados pelo sistema.
+```text
+app
+│
+├── telas
+│
+├── componentes
+│
+├── conjuntosCss
+│
+├── hooks
+│
+└── public
+```
 
 ---
 
-## 🔐 Segurança Implementada
+# 🔐 Segurança Implementada
 
-- Spring Security
-- Controle de acesso por perfil
-- Autenticação de usuários
-- Controle de permissões
-- Implementação de UserDetails
-- Tokens JWT
+Atualmente o sistema utiliza:
 
-## ⚠️ Observação:
-A camada de segurança está em desenvolvimento e poderá receber novas implementações futuramente, como:
-
-- TokenService
-- JWT Filter
-- AuthorizationService
-- Refresh Token
+* Spring Security
+* Basic Authentication
+* Controle de acesso por perfil
+* Usuários ADMIN
+* Usuários FUNCIONARIO
+* Proteção de endpoints
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+# 👥 Perfis de Usuário
 
-- Java
-- Spring Boot
-- Spring Security
-- Spring Data JPA
-- Hibernate
-- Maven
-- PostgreSQL
-- JWT
+```java
+ADMIN
+FUNCIONARIO
+```
 
----
+### ADMIN
 
-## 🔌 Funcionalidades Implementadas
+Possui acesso total ao sistema.
 
-✅ Cadastro de usuários
+### FUNCIONARIO
 
-✅ Cadastro de produtos
-
-✅ Cadastro de fornecedores
-
-✅ Relacionamento fornecedor-produto
-
-✅ Tratamento global de exceções
-
-✅ Exceções personalizadas
-
-✅ Controle de acesso por perfil
-
-✅ Autenticação de usuários
+Possui acesso limitado conforme as regras de negócio.
 
 ---
 
-## ▶️ Como executar
+# 📦 Módulo Produto
+
+Entidade Produto:
+
+```java
+Produto
+├── id
+├── codigo
+├── nome
+├── marca
+├── preco
+├── quantidade
+├── estoqueMinimo
+└── categoria
+```
+
+Categorias disponíveis:
+
+```java
+ELETRONICA
+ALIMENTO
+ROUPA
+LIMPEZA
+OUTROS
+```
+
+---
+
+# 🔌 Funcionalidades Implementadas
+
+## Backend
+
+✅ Cadastro de Usuários
+
+✅ Consulta de Usuários
+
+✅ Cadastro de Produtos
+
+✅ Consulta de Produtos
+
+✅ Atualização de Produtos
+
+✅ Exclusão de Produtos
+
+✅ Cadastro de Fornecedores
+
+✅ Relacionamento Fornecedor-Produto
+
+✅ DTOs
+
+✅ Tratamento Global de Exceções
+
+✅ Spring Security
+
+✅ Controle de Perfis
+
+---
+
+## Frontend
+
+✅ Tela de Login
+
+✅ Tela de Demonstração
+
+✅ Cadastro de Usuários
+
+✅ Navegação por Sidebar
+
+✅ Tela Acessar Estoque
+
+✅ Tela Acessar Produto
+
+✅ Cadastro de Produto integrado ao Backend
+
+✅ Consumo de API REST
+
+✅ Exibição dinâmica de produtos cadastrados
+
+✅ Integração com autenticação
+
+---
+
+# 🛠️ Tecnologias Utilizadas
+
+## Backend
+
+* Java 21
+* Spring Boot
+* Spring Security
+* Spring Data JPA
+* Hibernate
+* Maven
+* PostgreSQL
+* Lombok
+
+## Frontend
+
+* Next.js
+* React
+* TypeScript
+* CSS Modules
+* Lucide React
+
+---
+
+# ▶️ Executando o Projeto
+
+## Backend
 
 ```bash
 git clone https://github.com/Edigleis2022/gestorx.git
@@ -178,22 +243,62 @@ cd gestorx
 mvn spring-boot:run
 ```
 
-### Requisitos
+Backend disponível em:
 
-- Java 21+
-- Maven
-- PostgreSQL
-
----
-
-## 📌 Status
-
-Projeto acadêmico em desenvolvimento com foco na consolidação de conhecimentos em backend utilizando Spring Boot.
+```text
+http://localhost:8080
+```
 
 ---
 
-## 👨‍🎓 Autores
+## Frontend
 
-- Edigleis Pereira dos Santos
-- Bruno Severo de Oliveira
-- Maria Eduarda Bronzatti Mesquita
+```bash
+cd gestorx-web
+
+npm install
+
+npm run dev
+```
+
+Frontend disponível em:
+
+```text
+http://localhost:3000
+```
+
+---
+
+# 🚧 Funcionalidades em Desenvolvimento
+
+* Cadastro completo de Estoque
+* Movimentação de Estoque
+* Relatórios
+* Monitoramento
+* Dashboard Principal
+* Controle avançado de permissões
+* Melhorias na experiência do usuário
+
+---
+
+# 📌 Status do Projeto
+
+🚧 Em desenvolvimento
+
+Projeto acadêmico Full Stack desenvolvido para consolidação de conhecimentos em:
+
+* Java
+* Spring Boot
+* Segurança
+* Banco de Dados
+* React
+* Next.js
+* Arquitetura de Software
+
+---
+
+# 👨‍🎓 Autores
+
+* Edigleis Pereira dos Santos
+* Bruno Severo de Oliveira
+* Maria Eduarda Bronzatti Mesquita
