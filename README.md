@@ -6,7 +6,7 @@ Sistema web para gerenciamento de estoque desenvolvido como projeto acadêmico, 
 
 # 🚀 Sobre o Projeto
 
-O GestorX foi criado com o objetivo de auxiliar pequenas e médias empresas no controle de estoque, produtos, fornecedores e usuários, aplicando conceitos de arquitetura em camadas, segurança, integração frontend/backend e persistência de dados.
+O GestorXpress foi criado com o objetivo de auxiliar pequenas e médias empresas no controle de estoque, produtos, fornecedores e usuários, aplicando conceitos de arquitetura em camadas, segurança, integração frontend/backend e persistência de dados.
 
 O projeto está sendo desenvolvido como parte do Trabalho de Conclusão de Curso (TCC), evoluindo continuamente com novas funcionalidades.
 
