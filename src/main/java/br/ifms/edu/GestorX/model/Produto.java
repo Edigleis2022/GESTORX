@@ -15,7 +15,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -26,13 +25,22 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String codigo;
 
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String marca;
+
+    @Column(nullable = false)
     private Double preco;
+
+    @Column(nullable = false)
     private Integer quantidade;
+
+    @Column(nullable = false)
     private Integer estoqueMinimo;
 
     @OneToMany(mappedBy = "produto")
